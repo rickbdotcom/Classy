@@ -19,6 +19,8 @@
 NSString * const CASParseFailingFilePathErrorKey = @"CASParseFailingFilePathErrorKey";
 NSInteger const CASParseErrorFileContents = 2;
 
+static NSString* swiftModuleName;
+
 @interface CASParser ()
 
 @property (nonatomic, strong) CASLexer *lexer;
@@ -778,8 +780,13 @@ NSInteger const CASParseErrorFileContents = 2;
     return nil;
 }
 
++ (void)setSwiftClassModuleName:(NSString*)name
+{
+	swiftModuleName = name;
+}
+
 - (Class)swiftClassFromString:(NSString *)className {
-    NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
+    NSString *appName = swiftModuleName ?: [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
     NSString *sanitizedAppName = [appName stringByReplacingOccurrencesOfString:@" " withString:@"_"];
     NSString *classStringName = [NSString stringWithFormat:@"_TtC%lu%@%lu%@", (unsigned long)sanitizedAppName.length, sanitizedAppName, (unsigned long)className.length, className];
     return NSClassFromString(classStringName);
