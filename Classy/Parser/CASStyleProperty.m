@@ -9,6 +9,7 @@
 #import "CASStyleProperty.h"
 #import "NSString+CASAdditions.h"
 #import "CASExpressionSolver.h"
+#import "CASStyler.h"
 
 @interface CASStyleProperty ()
 
@@ -244,12 +245,12 @@
             imageValue = [UIImage imageWithContentsOfFile:[imagePath stringByAppendingPathComponent:path]];
         } else {
             // Otherwise load from imageNamed as per norm
-            imageValue = [UIImage imageNamed:path];
+            imageValue = [UIImage imageNamed:path inBundle:[CASStyler appBundle] compatibleWithTraitCollection:nil];
         }
         
     } else {
         // We're just an old boring image name
-        imageValue = [UIImage imageNamed:imageName];
+        imageValue = [UIImage imageNamed:imageName inBundle:[CASStyler appBundle] compatibleWithTraitCollection:nil];
     }
     
     

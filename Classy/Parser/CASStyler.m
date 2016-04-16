@@ -55,7 +55,17 @@ NSArray *ClassGetSubclasses(Class parentClass) {
 
 @end
 
+static NSBundle* _appBundle;
+
 @implementation CASStyler
+
++ (void)setAppBundle:(NSBundle*)appBundle {
+	_appBundle = appBundle;
+}
+
++ (NSBundle*)appBundle {
+	return _appBundle;
+}
 
 + (instancetype)defaultStyler {
     static CASStyler * _defaultStyler = nil;

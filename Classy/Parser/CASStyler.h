@@ -65,4 +65,10 @@
  */
 - (void)unscheduleUpdateForItem:(id<CASStyleableItem>)item;
 
+/**
+ * Mainly for use with Interface Builder
+ */
++ (void)setAppBundle:(NSBundle*)appBundle;
++ (NSBundle*)appBundle;
+
 @end

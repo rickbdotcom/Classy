@@ -15,11 +15,10 @@
 #import "CASStyleSelector.h"
 #import "CASDeviceSelector.h"
 #import "NSString+CASAdditions.h"
+#import "CASStyler.h"
 
 NSString * const CASParseFailingFilePathErrorKey = @"CASParseFailingFilePathErrorKey";
 NSInteger const CASParseErrorFileContents = 2;
-
-static NSString* swiftModuleName;
 
 @interface CASParser ()
 
@@ -780,13 +779,8 @@ static NSString* swiftModuleName;
     return nil;
 }
 
-+ (void)setSwiftClassModuleName:(NSString*)name
-{
-	swiftModuleName = name;
-}
-
 - (Class)swiftClassFromString:(NSString *)className {
-    NSString *appName = swiftModuleName ?: [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
+    NSString *appName = [[CASStyler appBundle] ?: [NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
     NSString *sanitizedAppName = [appName stringByReplacingOccurrencesOfString:@" " withString:@"_"];
     NSString *classStringName = [NSString stringWithFormat:@"_TtC%lu%@%lu%@", (unsigned long)sanitizedAppName.length, sanitizedAppName, (unsigned long)className.length, className];
     return NSClassFromString(classStringName);

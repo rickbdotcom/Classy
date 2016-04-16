@@ -22,6 +22,5 @@ extern NSInteger const CASParseErrorFileContents;
  */
 + (CASParser *)parserFromFilePath:(NSString *)filePath variables:(NSDictionary *)variables error:(NSError **)error;
 
-+ (void)setSwiftClassModuleName:(NSString*)name;
 
 @end
