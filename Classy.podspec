@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'Classy'
-  s.version  = '0.2.6'
+  s.version  = '0.2.7'
   s.license  = 'MIT'
   s.summary  = 'Expressive, flexible, and powerful stylesheets for UIView and friends.'
   s.homepage = 'http://classy.as'
