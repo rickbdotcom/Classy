@@ -66,9 +66,9 @@
 - (void)unscheduleUpdateForItem:(id<CASStyleableItem>)item;
 
 /**
- * Mainly for use with Interface Builder
+ * Mainly for use with Interface Builder for Swift modules and image loading
  */
-+ (void)setAppBundle:(NSBundle*)appBundle;
-+ (NSBundle*)appBundle;
++ (void)setSearchBundles:(NSArray<NSBundle*>*)bundles;
++ (NSArray<NSBundle*>*)searchBundles;
 
 @end

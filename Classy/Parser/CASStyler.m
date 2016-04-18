@@ -55,16 +55,18 @@ NSArray *ClassGetSubclasses(Class parentClass) {
 
 @end
 
-static NSBundle* _appBundle;
+static NSArray<NSBundle*>* _searchBundles;
 
 @implementation CASStyler
 
-+ (void)setAppBundle:(NSBundle*)appBundle {
-	_appBundle = appBundle;
++ (void)setSearchBundles:(NSArray<NSBundle*>*)bundles
+{
+	_searchBundles = bundles;
 }
 
-+ (NSBundle*)appBundle {
-	return _appBundle;
++ (NSArray<NSBundle*>*)searchBundles
+{
+	return _searchBundles;
 }
 
 + (instancetype)defaultStyler {

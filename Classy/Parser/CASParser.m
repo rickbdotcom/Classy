@@ -780,10 +780,21 @@ NSInteger const CASParseErrorFileContents = 2;
 }
 
 - (Class)swiftClassFromString:(NSString *)className {
-    NSString *appName = [[CASStyler appBundle] ?: [NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
-    NSString *sanitizedAppName = [appName stringByReplacingOccurrencesOfString:@" " withString:@"_"];
-    NSString *classStringName = [NSString stringWithFormat:@"_TtC%lu%@%lu%@", (unsigned long)sanitizedAppName.length, sanitizedAppName, (unsigned long)className.length, className];
-    return NSClassFromString(classStringName);
+	
+	NSArray<NSBundle*>* searchBundles = [CASStyler searchBundles];
+	if(searchBundles.count == 0)
+		searchBundles = @[[NSBundle mainBundle]];
+	
+	for(NSBundle* bundle in searchBundles) {
+		NSString *appName = [bundle objectForInfoDictionaryKey:@"CFBundleName"];
+		NSString *sanitizedAppName = [appName stringByReplacingOccurrencesOfString:@" " withString:@"_"];
+		NSString *classStringName = [NSString stringWithFormat:@"_TtC%lu%@%lu%@", (unsigned long)sanitizedAppName.length, sanitizedAppName, (unsigned long)className.length, className];
+		Class class = NSClassFromString(classStringName);
+		if(class != nil)
+			return class;
+	}
+	
+	return nil;
 }
 
 

@@ -245,12 +245,18 @@
             imageValue = [UIImage imageWithContentsOfFile:[imagePath stringByAppendingPathComponent:path]];
         } else {
             // Otherwise load from imageNamed as per norm
-            imageValue = [UIImage imageNamed:path inBundle:[CASStyler appBundle] compatibleWithTraitCollection:nil];
+			for(NSBundle* bundle in [CASStyler searchBundles]) {
+				imageValue = [UIImage imageNamed:path inBundle:bundle compatibleWithTraitCollection:nil];
+				if(imageValue != nil) break;
+			}
         }
         
     } else {
         // We're just an old boring image name
-        imageValue = [UIImage imageNamed:imageName inBundle:[CASStyler appBundle] compatibleWithTraitCollection:nil];
+		for(NSBundle* bundle in [CASStyler searchBundles]) {
+			imageValue = [UIImage imageNamed:imageName inBundle:bundle compatibleWithTraitCollection:nil];
+			if(imageValue != nil) break;
+		}
     }
     
     
