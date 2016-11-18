@@ -441,7 +441,8 @@ static NSArray<NSBundle*>* _searchBundles;
         @"highlighted"          : @(UIControlStateHighlighted),
         @"disabled"             : @(UIControlStateDisabled),
         @"selected"             : @(UIControlStateSelected),
-        @"selectedHighlighted"  : @(UIControlStateSelected|UIControlStateHighlighted)
+        @"selectedHighlighted"  : @(UIControlStateSelected|UIControlStateHighlighted),
+        @"selectedDisabled"    	: @(UIControlStateSelected|UIControlStateDisabled)
     };
 
     NSDictionary *textAlignmentMap = @{
