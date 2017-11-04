@@ -1,3 +1,19 @@
+v0.2.6
+======
+
+* Updated list of UIAppearance-setters in tests
+* Fixed misnamed @param name in code docs
+* Support for iOS 10 font weights
+* Reduced warnings caused by missing void in method input declaration
+
+v0.2.5
+======
+
+* Styling per window
+* Caching to binary plist
+* Load on demand
+* System font support
+
 v0.2.4
 ======
 
